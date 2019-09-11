@@ -10,6 +10,7 @@ class Info(models.Model):
     website_link = models.CharField('Website', max_length=50)
     email = models.CharField("E-mail", max_length=75)
     phone_number = models.CharField("Номер телефона", max_length=20)
+    profile_image = models.ImageField(upload_to='media/pictures', blank=True)
 
     def __str__(self):
         return self.name + ' ' + self.position
@@ -34,7 +35,7 @@ class Skill(models.Model):
 class SkillType(models.Model):
     info = models.ForeignKey(Skill, on_delete=models.CASCADE)
     skill_type_name = models.CharField('Название навыка', max_length=100)
-    skill_level = models.IntegerField('Уровень владения', max_length=3)
+    skill_level = models.IntegerField('Уровень владения')
 
     def __str__(self):
         return self.skill_type_name
