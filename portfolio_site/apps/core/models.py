@@ -17,7 +17,9 @@ class Info(models.Model):
 
 class WorkExperience(models.Model):
     info = models.ForeignKey(Info, on_delete=models.CASCADE)
-    postiton_time = models.CharField('Период работы', max_length=50)
+    position = models.CharField('Должность', max_length=50)
+    company_name = models.CharField('Наименовние места работы', max_length=100)
+    position_time = models.CharField('Период работы', max_length=50)
     description = models.TextField('Описание деятельности')
 
 
@@ -28,12 +30,15 @@ class Skill(models.Model):
     def __str__(self):
         return self.skill_direction
 
+
 class SkillType(models.Model):
     info = models.ForeignKey(Skill, on_delete=models.CASCADE)
     skill_type_name = models.CharField('Название навыка', max_length=100)
+    skill_level = models.IntegerField('Уровень владения', max_length=3)
 
     def __str__(self):
         return self.skill_type_name
+
 
 class Education(models.Model):
     info = models.ForeignKey(Info, on_delete=models.CASCADE)
@@ -44,6 +49,7 @@ class Education(models.Model):
     def __str__(self):
         return self.university_name
 
+
 class Language(models.Model):
     info = models.ForeignKey(Info, on_delete=models.CASCADE)
     language_name = models.CharField("Язык", max_length=30)
@@ -51,6 +57,7 @@ class Language(models.Model):
 
     def __str__(self):
         return self.language_name
+
 
 class Interest(models.Model):
     info = models.ForeignKey(Info, on_delete=models.CASCADE)
