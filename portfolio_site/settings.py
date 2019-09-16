@@ -29,7 +29,6 @@ DEBUG = os.environ.get('DEBUG')
 
 ALLOWED_HOSTS = [
     'yurovnikmaximsite.herokuapp.com',
-    '127.0.0.1',
 ]
 
 
