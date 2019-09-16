@@ -22,12 +22,15 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!emlc$k(7(_ss)(3csv!p_pt)avlx=d++0ag0zdzqqafog!t66'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'yurovnikmaximsite.herokuapp.com',
+    '127.0.0.1',
+]
 
 
 # Application definition
