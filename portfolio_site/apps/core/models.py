@@ -1,4 +1,15 @@
 from django.db import models
+from django.core.files.storage import FileSystemStorage
+from django.conf import settings
+
+image_storage = FileSystemStorage(
+    location=u'{0}/'.format(settings.MEDIA_ROOT),
+    base_url=u'{0}/'.format(settings.MEDIA_URL),
+)
+
+
+def image_directory_path(instance, filename):
+    return u'picture/{0}'.format(filename)
 
 
 class Info(models.Model):
@@ -10,7 +21,8 @@ class Info(models.Model):
     website_link = models.CharField('Website', max_length=50)
     email = models.CharField("E-mail", max_length=75)
     phone_number = models.CharField("Номер телефона", max_length=20)
-    profile_image = models.ImageField(upload_to=b'pictures',
+    profile_image = models.ImageField(upload_to=image_directory_path,
+                                      storage=image_storage,
                                       blank=True, null=True)
 
     def __str__(self):
